@@ -12,10 +12,14 @@ Unlike a simple chatbot that just calls an LLM, this agent reasons about *what k
 4. Tool executes and returns results
 5. Agent incorporates tool results into final response
 
-```
-START → tool_calling_model → [tools_condition] → tools → END
-                            ↘ (no tool needed) ↘
-                                    END
+## Workflow
+
+```mermaid
+flowchart TD
+    A([Start]) --> B[Tool calling model<br/>LLM decides next step]
+    B -->|No tool needed| E([End])
+    B -->|Tool call requested| C[Tools node<br/>arxiv, wikipedia, web search]
+    C --> E
 ```
 
 ## Tools
